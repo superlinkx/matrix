@@ -1,0 +1,5 @@
+*
+!.gitignore
+!matrix.go
+!matrix_test.go
+!README.md
