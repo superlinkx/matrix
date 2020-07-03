@@ -1,14 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 )
 
 // Test to help see if we're getting more collisions than expected
 // This should rarely fail if sufficiently random
 func TestMatrixGoBrrr(t *testing.T) {
-	var matrix1 [10000][10000]int
-	var matrix2 [10000][10000]int
+	var matrix1 [10000][10000]int32
+	var matrix2 [10000][10000]int32
 	matrixGoBrrr(&matrix1)
 	matrixGoBrrr(&matrix2)
 	collisions := 0
@@ -17,6 +18,7 @@ func TestMatrixGoBrrr(t *testing.T) {
 		for j := 0; j < 10000; j++ {
 			if matrix1[i][j] == matrix2[i][j] {
 				collisions++
+				fmt.Printf("Collision at %d:%d with value %d\n", i, j, matrix1[i][j])
 			}
 		}
 	}
@@ -30,7 +32,7 @@ func TestMatrixGoBrrr(t *testing.T) {
 func BenchmarkMatrix(b *testing.B) {
 	// run the matrix function b.N times
 	for n := 0; n < b.N; n++ {
-		var matrix [10000][10000]int
+		var matrix [10000][10000]int32
 		matrixGoBrrr(&matrix)
 	}
 }

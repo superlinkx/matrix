@@ -3,3 +3,5 @@
 !matrix.go
 !matrix_test.go
 !README.md
+!go.mod
+!go.sum
